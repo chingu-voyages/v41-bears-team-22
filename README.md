@@ -31,7 +31,7 @@
 <!-- OBJECTIVE -->
 ## Objective
 <div align="center">
- <p align="left">This fullstack application is part of a submission for Chingu Voyage. Learning how to contribute to open source by delivering a functiong fullstack application. A gentle introduction into using Agile methodology and Github issues/branching.
+ <p align="left">This fullstack application is part of a submission for Chingu Voyage. Learning how to contribute to open source by delivering a functioning fullstack application. A gentle introduction into using Agile methodology and Github issues/branching.
   <br>
      <br>
      For more information visit  <code> https://www.chingu.io/ </code> </p>
