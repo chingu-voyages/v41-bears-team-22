@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "http://example.com/example.json",
+	"type": "object",
+	"properties": {
+		"role": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 30
+		},
+		"companyName": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 30
+		},
+		"jobpostlink": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 100
+		},
+		"location": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 20
+		},
+		"dateofapplication": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 20
+		}
+	},
+	"additionalProperties": false
+}
