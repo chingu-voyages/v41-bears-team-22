@@ -1,10 +1,10 @@
-INSERT INTO users (first_name, last_name, email, password, githublink, linkedinlink, is_admin)
-VALUES('Promise',
+INSERT INTO users (username, password, first_name, last_name, email, is_admin)
+VALUES(
+        'Promisethedev',
+        '$2b$12$hBTHK/V8T1v6W2k3f5ku6OyX8/6vFfv1t/qkvCyVBGxhGMbRH74W2',
+        'Promise',
         'Morka',
         'onyekamorka06@gmail.com',
-        '$2b$12$j3CL9gbvpAy6DJjlS.Diau9rdGWZYwO5LRmi7qM9t3LwWiQRI/UXq',
-        'https://github.com/promisethedeveloper',
-        'https://www.linkedin.com/in/promisemorka/',
         TRUE);
 
 -- INSERT INTO companies (name, website, phone_number, address, linkedinlink, recruiter_phonenumber)
@@ -15,11 +15,17 @@ VALUES('Promise',
 --         'https://www.linkedin.com/jobs/',
 --         '24012334566');
 
-INSERT INTO applications (role, company_name, jobpostlink, location, dateofapplication, user_id, status)
-VALUES ('Software Engineer',
+INSERT INTO applications (username, role, company_name, jobpostlink, location, dateofapplication, status)
+VALUES ('Promisethedev',
+        'Software Engineer',
         'ABC Tech',
         'https://abctech.com/techjobs',
         'Washington DC',
         '2022-10-01',
-        1,
+        'Applied'),('Promisethedev',
+        'Full Stack Software Engineer',
+        'DEF Tech',
+        'https://deftech.com/techjobs',
+        'New York NY',
+        '2022-10-01',
         'Applied');
