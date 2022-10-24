@@ -1,10 +1,10 @@
 INSERT INTO users (username, password, first_name, last_name, email, is_admin)
 VALUES(
-        'Promisethedev',
+        'testUer',
         '$2b$12$hBTHK/V8T1v6W2k3f5ku6OyX8/6vFfv1t/qkvCyVBGxhGMbRH74W2',
-        'Promise',
-        'Morka',
-        'onyekamorka06@gmail.com',
+        'tester_firstName',
+        'tester_LastName',
+        'tester@gmail.com',
         TRUE);
 
 -- INSERT INTO companies (name, website, phone_number, address, linkedinlink, recruiter_phonenumber)
