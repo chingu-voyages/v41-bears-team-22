@@ -16,7 +16,7 @@ VALUES(
 --         '24012334566');
 
 INSERT INTO applications (username, role, company_name, jobpostlink, location, dateofapplication, status)
-VALUES ('Promisethedev',
+VALUES ('testUer',
         'Software Engineer',
         'ABC Tech',
         'https://abctech.com/techjobs',
