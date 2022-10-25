@@ -44,7 +44,7 @@
 <!-- Screenshots -->
 ## Screenshots
 <div align="center">
- <img src="images/fastTrack.jpg" alt="logo" width="100" height="100">
-  <img src="images/homePage.png" alt="Login Page" width="300" height="200">
+ <img src="./frontend/images/fastTrack.jpg" alt="logo" width="100" height="100">
+  <img src="./frontend/images/homePage.png" alt="Login Page" width="300" height="200">
 </div>
 
