@@ -78,7 +78,7 @@ const request = async (opts) => {
 	};
 
 	const onSuccess = (response) => {
-		console.debug("Request Successful!", response);
+		console.debug("Login Successful!", response);
 		return response;
 	};
 
