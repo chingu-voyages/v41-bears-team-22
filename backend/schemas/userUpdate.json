@@ -3,31 +3,28 @@
 	"$id": "http://example.com/example.json",
 	"type": "object",
 	"properties": {
-		"role": {
+		"password": {
+			"type": "string",
+			"minLength": 5,
+			"maxLength": 20
+		},
+		"firstName": {
 			"type": "string",
 			"minLength": 1,
 			"maxLength": 30
 		},
-		"companyName": {
+		"lastName": {
 			"type": "string",
 			"minLength": 1,
 			"maxLength": 30
 		},
-		"jobpostlink": {
+		"email": {
 			"type": "string",
-			"minLength": 1,
-			"maxLength": 100
-		},
-		"location": {
-			"type": "string",
-			"minLength": 1,
-			"maxLength": 20
-		},
-		"dateofapplication": {
-			"type": "string",
-			"minLength": 1,
-			"maxLength": 20
+			"minLength": 6,
+			"maxLength": 60,
+			"format": "email"
 		}
 	},
-	"additionalProperties": false
+	"additionalProperties": false,
+	"required": []
 }

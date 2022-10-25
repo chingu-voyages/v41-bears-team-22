@@ -3,6 +3,11 @@
 	"$id": "http://example.com/example.json",
 	"type": "object",
 	"properties": {
+		"username": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 30
+		},
 		"role": {
 			"type": "string",
 			"minLength": 1,
@@ -24,14 +29,6 @@
 			"maxLength": 20
 		},
 		"dateofapplication": {
-			"type": "string",
-			"minLength": 1,
-			"maxLength": 20
-		},
-		"userId": {
-			"type": "integer"
-		},
-		"status": {
 			"type": "string",
 			"minLength": 1,
 			"maxLength": 20

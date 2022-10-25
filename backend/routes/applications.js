@@ -6,24 +6,24 @@ const jsonschema = require("jsonschema");
 const express = require("express");
 
 const { BadRequestError } = require("../expressError");
-const { ensureAdmin, ensureCorrectUserOrAdmin } = require("../middleware/auth");
+const { ensureCorrectUserOrAdmin } = require("../middleware/auth");
 const Application = require("../models/application");
 
-const applicationNewSchema = require("../schemas/applicationNewSchema");
-const applicationUpdateSchema = require("../schemas/applicationUpdateSchema");
+const applicationNewSchema = require("../schemas/applicationNew");
+const applicationUpdateSchema = require("../schemas/applicationUpdate");
 
 const router = new express.Router();
 
 /** POST /
  *
- * { applications: [ {role, company_name, jobpostlink, location, dateofapplication, status }] }
+ * { applications: [ {username, role, company_name, jobpostlink, location, dateofapplication, status }] }
  *
- * Returns { role, company_name, jobpostlink, location, dateofapplication, status }
+ * Returns { username, role, company_name, jobpostlink, location, dateofapplication, status }
  *
  * Authorization required: Admin or correct user
  */
 
-router.post("/", async (req, res, next) => {
+router.post("/", ensureCorrectUserOrAdmin, async (req, res, next) => {
 	try {
 		const validator = jsonschema.validate(req.body, applicationNewSchema);
 		if (!validator.valid) {
@@ -38,16 +38,18 @@ router.post("/", async (req, res, next) => {
 	}
 });
 
-/** GET /id
+/** GET /username
  *
  * { applications: [ {role, company_name, jobpostlink, location, dateofapplication, status } ] }
+ *
+ * Authorization required: Admin or correct user
+ *
  */
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:username", ensureCorrectUserOrAdmin, async (req, res, next) => {
 	try {
-		const { id } = req.params;
-		const applications = await Application.getAll(id);
-		console.log(id);
+		const { username } = req.params;
+		const applications = await Application.getAll(username);
 		return res.json({ applications });
 	} catch (error) {
 		return next(error);
@@ -58,7 +60,7 @@ router.get("/:id", async (req, res, next) => {
  * { applications: [ {role, company_name, jobpostlink, location, dateofapplication, status } ] }
  */
 
-router.get("/", async (req, res, next) => {
+router.get("/", ensureCorrectUserOrAdmin, async (req, res, next) => {
 	try {
 		const { joblink } = req.query;
 		const application = await Application.get(joblink);
@@ -68,7 +70,18 @@ router.get("/", async (req, res, next) => {
 	}
 });
 
-router.patch("/:joblink", async (req, res, next) => {
+/** PATCH /[username] { field1, field2, ... } => { application }
+ *
+ * Patches application data.
+ *
+ * fields can be { role, companyName, jobpostlink, location, dataofapplication, status }
+ *
+ * Returns { username, role, companyName, jobpostlink, location, dataofapplication, status }
+ *
+ * Authorization required: Admin or correct user
+ */
+
+router.patch("/:username", ensureCorrectUserOrAdmin, async (req, res, next) => {
 	try {
 		const validator = jsonschema.validate(req.body, applicationUpdateSchema);
 		if (!validator.valid) {
@@ -76,11 +89,29 @@ router.patch("/:joblink", async (req, res, next) => {
 			throw new BadRequestError(errs);
 		}
 
-		const application = await Application.update(req.params.joblink, req.body);
+		const application = await Application.update(req.params.username, req.body);
 		return res.json({ application });
 	} catch (error) {
 		return next(error);
 	}
 });
+
+/** DELETE /[jobpostlink] => { deleted: jobpostlink }
+ *
+ * Authorization required: admin or same-user-as:username
+ */
+
+router.delete(
+	"/:username",
+	ensureCorrectUserOrAdmin,
+	async (req, res, next) => {
+		try {
+			await Application.remove(req.query.jobpostlink);
+			return res.json({ deleted: req.query.jobpostlink });
+		} catch (error) {
+			return next(error);
+		}
+	}
+);
 
 module.exports = router;

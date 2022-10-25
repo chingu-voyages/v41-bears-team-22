@@ -13,26 +13,26 @@ class Application {
 	 */
 
 	static async create({
+		username,
 		role,
 		companyName,
 		jobpostlink,
 		location,
 		dateofapplication,
-		userId,
 		status,
 	}) {
 		const result = await db.query(
 			`INSERT INTO applications
-             (role, company_name, jobpostlink, location, dateofapplication, user_id, status)
+             (username, role, company_name, jobpostlink, location, dateofapplication, status)
              VALUES($1, $2, $3, $4, $5, $6, $7)
              RETURNING role, company_name, jobpostlink, location, dateofapplication, status`,
 			[
+				username,
 				role,
 				companyName,
 				jobpostlink,
 				location,
 				dateofapplication,
-				userId,
 				status,
 			]
 		);
@@ -42,19 +42,20 @@ class Application {
 
 	/** Given a user id, return all user's applications
 	 *
-	 * Returns { role, companyName, jobpostlink, location, dateofappication }
+	 * Returns { role, companyName, jobpostlink, location, dateofappication, status }
 	 */
 
-	static async getAll(id) {
+	static async getAll(username) {
 		const applicationsRes = await db.query(
 			`SELECT role,
                     company_name AS "companyName",
                     jobpostlink,
                     location,
-                    dateofapplication
+                    dateofapplication,
+					status
                     FROM applications
-                    WHERE user_id = $1`,
-			[id]
+                    WHERE username = $1`,
+			[username]
 		);
 
 		const applications = applicationsRes.rows;
@@ -72,7 +73,8 @@ class Application {
                     company_name AS "companyName",
                     jobpostlink,
                     location,
-                    dateofapplication
+                    dateofapplication,
+					status
                     FROM applications
                     WHERE jobpostlink = $1`,
 			[jobpostlink]
@@ -98,24 +100,44 @@ class Application {
 	 * Throws NotFoundError if not found
 	 */
 
-	static async update(joblink, data) {
+	static async update(username, data) {
 		const { setCols, values } = sqlForPartialUpdate(data, {
 			companyName: "company_name",
 		});
-		const handleVarIdx = "$" + (values.length + 1);
-		const querySql = `UPDATE applications
-                            SET ${setCols}
-                            WHERE handle = ${handleVarIdx}
-                            RETURNING role,
-                                    company_name AS "companyName",
-                                    jobpostlink,
-                                    location
-                                    dateofapplication`;
-		const result = await db.query(querySql, [...values, joblink]);
+		const usernameVarIdx = "$" + (values.length + 1);
+		const querySql = `UPDATE applications 
+							SET ${setCols}
+							WHERE username = ${usernameVarIdx}
+							RETURNING username,
+									  role,
+									  company_name AS "companyName",
+									  jobpostlink,
+									  location,
+									  dateofapplication,
+									  status`;
+		const result = await db.query(querySql, [...values, username]);
 		const application = result.rows[0];
 
-		if (!application) throw new NotFoundError(`No application: ${joblink}`);
+		if (!application) throw new NotFoundError(`No user: ${username}`);
+
 		return application;
+	}
+
+	/** Delete given application from database; returns undefined
+	 *
+	 * Throws NotFoundError if application not found
+	 */
+
+	static async remove(jobpostlink) {
+		let result = await db.query(
+			`DELETE
+			FROM applications
+			WHERE jobpostlink=$1
+			RETURNING jobpostlink`,
+			[jobpostlink]
+		);
+		const application = result.rows[0];
+		if (!application) throw new NotFoundError(`No application: ${jobpostlink}`);
 	}
 }
 
