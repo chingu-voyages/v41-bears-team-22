@@ -59,6 +59,40 @@ export const Register = () => {
 
                         <Form className='auth-login-form mt-2' onSubmit={handleRegister}>
                             <FormGroup>
+                                <Label className='form-label' for='firstName'>
+                                    First Name:
+                                </Label>
+                                <Input
+                                    autoFocus
+                                    type='text'
+                                    value={user.firstName}
+                                    placeholder='Enter your first name here ...'
+                                    id='firstName'
+                                    name='firstName'
+                                    className='auth-username'
+                                    onChange={(e) => handleChange('firstName', e.target.value)}
+                                    required
+                                    innerRef={({ required: true, validate: value => value !== '' })}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label className='form-label' for='username'>
+                                    Last Name:
+                                </Label>
+                                <Input
+                                    autoFocus
+                                    type='text'
+                                    value={user.lastName}
+                                    placeholder='Enter your last name here ...'
+                                    id='lastName'
+                                    name='lastName'
+                                    className='auth-username'
+                                    onChange={(e) => handleChange('lastName', e.target.value)}
+                                    required
+                                    innerRef={({ required: true, validate: value => value !== '' })}
+                                />
+                            </FormGroup>
+                            <FormGroup>
                                 <Label className='form-label' for='username'>
                                     Username:
                                 </Label>
