@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  color: #3986c0;
+  text-align: center;
+
+  & .title {
+    font-size: 2rem;
+    color: #3986c0;
+    float: left;
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  & .tab-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  & .job-title {
+    display: inline;
+    margin-top: 0;
+    padding-right: 1rem;
+  }
+
+  & .company-name {
+    display: inline;
+    margin-top: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+#jobTitle {
+  display: inline;
+  width: 25%;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid #3986c0;
+  font-size: 1rem;
+  color: #3986c0;
+  background-color: transparent;
+  outline: none;
+  transition: all 0.3s;
+  &:focus {
+    border-bottom: 2px solid #3986c0;
+  }
+}
+
+#companyName {
+  display: inline;
+  width: 25%;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid #3986c0;
+  font-size: 1rem;
+  color: #3986c0;
+  background-color: transparent;
+  outline: none;
+  transition: all 0.3s;
+  &:focus {
+    border-bottom: 2px solid #3986c0;
+  }
+}
