@@ -1,0 +1,54 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.container {
+    color: #3986c0;
+    text-align: left;
+
+  }
+
+  .col{
+    flex-shrink: 0;
+    margin: 0px;
+    max-width: 100%;
+  }
+
+.main-body {
+    text-align: center;
+}
+
+.form-label{
+  margin-left: 2%;
+  margin-bottom: 3%;
+  font-weight: bold;
+  text-align: start;
+}
+
+.form-group{
+  text-align: left;
+}
+
+#form-box{
+background-color: #3986c0;
+margin: 5%;
+padding-left: 5%;
+padding-right: 5%;
+padding-bottom: 3%;
+border-radius: 25px;
+}
+
+.test{
+  text-align: left;
+  margin-bottom: 3px;
+  margin-left: 0;
+}
+
+  .Button{
+    text-align: end;
+  }
+
+  .color{
+    background-color: #3986c0;
+    max-width: 100%;
+  }
+  
+ 

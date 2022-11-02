@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Login } from "./pages/UserAuth/Login";
 import { Register } from "./pages/UserAuth/Register";
 import { Home } from "./pages/Home";
+import { Application } from "./pages/Application/AddApplication";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,6 +17,7 @@ root.render(
           <Route path='' element={<Login />} />
           <Route path='register' element={<Register />} />
           <Route path='/home' element={<Home />} />
+          <Route path='/application' element={<Application/>} />
         </Route>
       </Routes>
     </Router>
