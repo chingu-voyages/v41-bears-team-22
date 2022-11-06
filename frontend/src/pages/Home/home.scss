@@ -1,0 +1,39 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+.header{
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.searchContainer{
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+.filterCol{
+  text-align: center;
+}
+
+.application_card{
+  padding: 2%;
+
+  & .cardTitle{
+    margin-left: 40px;
+    color: #0880b8 ;
+  }
+
+  & .infoBox{
+    flex-direction:row;
+    align-items: flex-start
+  }
+
+  & .infoText{
+    margin-bottom: 0%;
+  }
+
+  & .statusContainer{
+    margin: auto;
+    text-align: right;
+  }
+}
